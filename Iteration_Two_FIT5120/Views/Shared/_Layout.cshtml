@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Unified Australia</title>
+    <link rel="shortcut icon" href="~/Content/Images/project_logo.png" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/icofont.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/normalize.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/modernizr-2.8.3.min.js"></script>
+
+</head>
+<body data-spy="scroll" data-target=".mainmenu-area">
+    <!--Preloader-->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav class="navbar mainmenu-area affix-top" data-spy="affix" data-offset-top="197" style="background-color:#475577">
+        <div class="container">
+            <div class="col-xs-12">
+                <div class="navbar-header smoth">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainmenu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="margin:0;padding:0" href="/Home/Index"><img src="~/Content/Images/project_logo.png" style="height:80px;width:140px" alt=""></a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="mainmenu">
+
+                    <ul class="nav navbar-nav primary-menu active">
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active nav-item" : "nav-item")"><a href="/Home/Index"><i class="icofont icofont-ui-home" style="font-size:20px"></i></a></li>
+                        @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Job" ? "active nav-item" : "nav-item")"><a href="/Home/Job">Jobs</a></li>*@
+                        @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Service" ? "active nav-item" : "nav-item")"><a href="/Home/Service">Our Services</a></li>*@
+
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Job" ? "active nav-item" : "nav-item") dropdown">
+                            <a class="nav-link dropdown-toggle" id="navDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jobs</a>
+                            <div class="dropdown-menu" aria-labelledby="navDropdown">
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "" ? "active dropdown-item" : "dropdown-item")" href="/Home/Job">Employment Outlook</a>
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "" ? "active dropdown-item" : "dropdown-item")" href="/Home/Job#viz_two">Job Vacancy Finder</a>
+                            </div>
+                        </li>
+
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LegalAdvice" ? "active nav-item" : "nav-item") dropdown">
+                            <a class="nav-link dropdown-toggle" id="navDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+                            <div class="dropdown-menu" aria-labelledby="navDropdown">
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Fairpay" ? "active dropdown-item" : "dropdown-item")" href="/Home/Fairpay">Fair Pay Calculator</a>
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Taxcal" ? "active dropdown-item" : "dropdown-item")" href="/Home/Taxcal">Tax Calculator</a>
+                            </div>
+                        </li>
+
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LegalAdvice" ? "active nav-item" : "nav-item") dropdown">
+                            <a class="nav-link dropdown-toggle" id="navDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legal Advice</a>
+                            <div class="dropdown-menu" aria-labelledby="navDropdown">
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Survey" ? "active dropdown-item" : "dropdown-item")" href="/Home/Survey">Bullying</a>
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Meter_Mental" ? "active dropdown-item" : "dropdown-item")" href="/Home/Meter_Mental">Mental Health Toolkit</a>
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Mental_Quiz" ? "active dropdown-item" : "dropdown-item")" href="/Home/Mental_Quiz">Work-Life Balance Quiz</a>
+                                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Jobcrime" ? "active dropdown-item" : "dropdown-item")" href="/Home/Jobcrime">Youth Crime Infographics</a>
+                            </div>
+                        </li>
+                        @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active nav-item" : "nav-item")"><a href="/Home/Contact">Legal Advice</a></li>*@
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "NewsEvents" ? "active nav-item" : "nav-item")"><a href="/Home/NewsEvents">Latest News</a></li>
+
+                        @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active nav-item" : "nav-item")"><a href="/Home/About">About Us</a></li>*@
+
+                        @*<!-- Consolidate them into drop down-->
+        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active nav-item" : "nav-item")"><a href="/Home/About">Work Rights</a></li>
+        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Survey" ? "active nav-item" : "nav-item")"><a href="/Home/Survey">Law Survey</a></li>
+        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "JobCrime" ? "active nav-item" : "nav-item")"><a href="/Home/Jobcrime">Crime Infographics</a></li>
+        <!-- Consolidate them into drop down-->*@
+                        @*<li class="@(ViewContext.RouteData.Values["Action"].ToString() == "WeatherTriggers" ? "active nav-item" : "nav-item") || @(ViewContext.RouteData.Values["Action"].ToString() == "WeatherInsights" ? "active nav-item" : "nav-item")  dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                WEATHER TRIGGERS
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "WeatherTriggers" ? "active dropdown-item" : "dropdown-item")" href="@Url.Action("WeatherTriggers","Home")">FORECAST</a>
+                <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "WeatherInsights" ? "active dropdown-item" : "dropdown-item")" href="@Url.Action("WeatherInsights","Home")">INSIGHTS</a>
+            </div>
+        </li>*@
+                        <!-- DROP DOWN MENU-->
+                        <!-- DROP DOWN MENU-->
+                        @*<li><a href="#contact-area">Contact</a></li>*@
+                    </ul>
+                    @*@Html.Partial("_LoginPartial")*@ <!-- This code snipped turns on the registration and log in tabs -->
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    @*<div class="container body-content">*@
+    @RenderBody()
+    @*<hr />*@
+    <!-- Footer-Area -->
+    <footer class="footer-area" style="background-color: #475577">
+        @*<div class="footer-top section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <div class="footer-text">
+                            <h4 class="upper" style="text-transform:uppercase">Unified Australia</h4>
+                            <p>An initiative for a better Australian future</p>
+                            <div class="footer-bottom" style="font-size:12px; text-align:justify">
+                                <p>We provide information on rights of individuals</p>
+                                <p>Direct people in need towards legal assistance</p>
+                                <p>Assist in calculating fair pays and wages</p>
+                                <p>Guide young individuals in employment sector</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-2 col-md-offset-1">
+                            <div class="footer-single">
+                                <h4 class="upper">News</h4>
+                                <ul style="font-size:12px">
+                                    <li><a href="/Home/NewsEvents">News</a></li>
+                                    <li><a href="/Home/NewsEvents">Events</a></li>
+                                    <li><a href="/Home/NewsEvents">Success Stories</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    <div class="col-xs-6 col-md-2" style="font-size:12px;">
+                        <div class="footer-single">
+                            <h4 class="upper">TOP SERVICES</h4>
+                            <ul>
+                                <li><a href="/Home/Job">Jobs</a></li>
+                                <li><a href="/Home/Service">Services</a></li>
+                                <li><a href="/Home/Meter_Mental">Legal Advice</a></li>
+                                <li><a href="/Home/NewsEvents">Latest News</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2" style="font-size:12px;">
+                        <div class="footer-single">
+                            <h4 class="upper">Resources</h4>
+                            <ul>
+                                <li><a href="/Home/About">Why Choose Us</a></li>
+                                <li><a href="/Home/About">Our People</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-2" style="font-size:12px;">
+                        <div class="footer-single">
+                            <h4 class="upper">Copyrights</h4>
+                            <ul>
+                                <li><a href="#">Disclaimer</a></li>
+                                <li><a href="#">Copyright</a></li>
+                                <li><a href="#">Potential Partners</a></li>
+                                <li><a href="#">Accessibility</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="social-menu" style="font-size:20px">
+                        <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                        <a href="#"><i class="icofont icofont-social-twitter"></i></a>
+                        <a href="#"><i class="icofont icofont-social-google-plus"></i></a>
+                        <a href="#"><i class="icofont icofont-social-linkedin"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="copyright">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | Unified Australia &copy;
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--Vendor-JS-->
+    <script src="../Scripts/jquery-1.12.4.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <!--Plugin-JS-->
+    <script src="../Scripts/owl.carousel.min.js"></script>
+    <script src="../Scripts/appear.js"></script>
+    <script src="../Scripts/bars.js"></script>
+    <script src="../Scripts/waypoints.min.js"></script>
+    <script src="../Scripts/counterup.min.js"></script>
+    <script src="../Scripts/easypiechart.min.js"></script>
+    <script src="../Scripts/mixitup.min.js"></script>
+    <script src="../Scripts/contact-form.js"></script>
+    <script src="../Scripts/scrollUp.min.js"></script>
+    <script src="../Scripts/magnific-popup.min.js"></script>
+    <script src="../Scripts/wow.min.js"></script>
+    <!--Main-active-JS-->
+    <script src="../Scripts/main.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXZ3vJtdK6aKAEWBovZFe4YKj1SGo9V20&callback=initMap"></script>
+    <script src="../Scripts/maps.js"></script>
+
+    <!-- Scripts related to login and registration page -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- Scripts related to login and registration page -->
+
+
+
+
+</body>
+</html>

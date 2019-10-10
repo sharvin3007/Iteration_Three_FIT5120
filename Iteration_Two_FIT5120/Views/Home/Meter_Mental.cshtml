@@ -1,0 +1,474 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/icofont.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/normalize.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body data-spy="scroll" data-target=".mainmenu-area">
+
+    <script type='text/javascript' src='~/Scripts/Meter_Mental.js'></script>
+
+    <section class="section-padding" id="fact area" ; style="margin-top: 80px; padding: 30px; padding-right: 30px;">
+        <h2 class="title wow fadeInUp" style="text-align:center; text-transform:uppercase; font-weight:400">
+            Mental Health Meter
+        </h2>
+
+        <button class="coll_4"> Why assess yourself with the Mental Toolkit? <i class="icofont icofont-simple-down" style="font-size:20px;"></i></button>
+        <div class="content">
+            <br />
+            <h5 style="text-align:justify; font-family:Arial; font-weight:200">
+                Understanding the characteristics that make up good mental health will help you determine how mentally fit you are. Here are some real-life examples:
+            </h5>
+            <ul>
+                <li style="text-align:justify; font-family:Arial">
+                    Ability to enjoy life
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Resilience
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Balance
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Self-actualization
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Flexibility
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section-padding gray-bg" style="padding: 40px;">
+        <h2 class="title wow fadeInUp" style="text-align:center; text-transform:uppercase; font-weight:400">
+            » <a href="#mental-meter">
+                Take the Mental Health Meter
+            </a>
+        </h2>
+        <p>
+            <strong>Disclaimer</strong><br>
+            <em>This is not a scientific test. Information provided is not a substitute for professional advice. If you feel that you may need advice, please consult a qualified health care professional. </em>
+        </p>
+    </section>
+
+    <section class="section-padding" id="mental-meter" ; style="padding-left: 60px; width: 90%">
+
+        <form method="post" name="stress">
+            <table class="quiz" border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <th class="heading">Ability to enjoy life</th>
+                        <th class="heading agreedHeader">Agree</th>
+                        <th class="heading disagreeHeader">Disagree</th>
+                    </tr>
+                    <tr>
+                        <td width="100%">I tend to live in the moment and appreciate the "now."</td>
+                        <td>
+                            <label><input name="yesno1a" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno1a" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I often dwell on past experiences and daydream about different outcomes.</td>
+                        <td>
+                            <label><input name="yesno2a" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno2a" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>I recognize that some things can't be changed.</td>
+                        <td>
+                            <label><input name="yesno3a" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno3a" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>My feelings of happiness are often overshadowed by worry about the future.</td>
+                        <td>
+                            <label><input name="yesno4a" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno4a" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>My home is a comfortable, pleasant place.</td>
+                        <td>
+                            <label><input name="yesno5a" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno5a" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I worry a lot about my friends and family.</td>
+                        <td>
+                            <label><input name="yesno6a" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno6a" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="quiz" border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <th class="heading">Resilience</th>
+                        <th class="heading agreedHeader">Agree</th>
+                        <th class="heading disagreeHeader">Disagree</th>
+                    </tr>
+                    <tr>
+                        <td width="100%">When life gets tough, I retreat from friends and family.</td>
+                        <td>
+                            <label><input name="yesno1r" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno1r" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>When I'm under serious stress, I can't lead a normal life.</td>
+                        <td>
+                            <label><input name="yesno2r" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno2r" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>I believe that I can learn from difficult times.</td>
+                        <td>
+                            <label><input name="yesno3r" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno3r" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>After an emotional upheaval, it makes me feel guilty to feel happy.</td>
+                        <td>
+                            <label><input name="yesno4r" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno4r" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>I exercise regularly and eat right, even when life gets busy or stressful.</td>
+                        <td>
+                            <label><input name="yesno5r" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno5r" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I have a great support network.</td>
+                        <td>
+                            <label><input name="yesno6r" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno6r" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="quiz" border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <th class="heading">Balance</th>
+                        <th class="heading agreedHeader">Agree</th>
+                        <th class="heading disagreeHeader">Disagree</th>
+                    </tr>
+                    <tr>
+                        <td width="100%">There aren't enough hours in the day to accomplish everything I want to do.</td>
+                        <td>
+                            <label><input name="yesno1b" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno1b" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I always make time for my hobbies.</td>
+                        <td>
+                            <label><input name="yesno2b" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno2b" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>My friends often complain that they never see me.</td>
+                        <td>
+                            <label><input name="yesno3b" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno3b" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>If life is a juggling act, then I think I'm a pretty good juggler.</td>
+                        <td>
+                            <label><input name="yesno4b" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno4b" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>I practice a relaxation technique regularly.</td>
+                        <td>
+                            <label><input name="yesno5b" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno5b" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>Focusing on work will get me where I want to be.</td>
+                        <td>
+                            <label><input name="yesno6b" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno6b" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="quiz" border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <th class="heading">Self-actualization</th>
+                        <th class="heading agreedHeader">Agree</th>
+                        <th class="heading disagreeHeader">Disagree</th>
+                    </tr>
+                    <tr>
+                        <td width="100%">Compliments make me uncomfortable.</td>
+                        <td>
+                            <label><input name="yesno1s" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno1s" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I have good self esteem.</td>
+                        <td>
+                            <label><input name="yesno2s" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno2s" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>When people say I have positive qualities, I have trouble believing what they are saying.</td>
+                        <td>
+                            <label><input name="yesno3s" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno3s" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I know what my strengths are and I work to develop them.</td>
+                        <td>
+                            <label><input name="yesno4s" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno4s" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>I feel I am reaching my potential.</td>
+                        <td>
+                            <label><input name="yesno5s" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno5s" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>Taking chances is risky, but it's worth the risk.</td>
+                        <td>
+                            <label><input name="yesno6s" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno6s" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="quiz" border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <th class="heading">Flexibility</th>
+                        <th class="heading agreedHeader">Agree</th>
+                        <th class="heading disagreeHeader">Disagree</th>
+                    </tr>
+                    <tr>
+                        <td width="100%">I don't always know what to expect from people</td>
+                        <td>
+                            <label><input name="yesno1f" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno1f" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>My problems are usually caused by other people.</td>
+                        <td>
+                            <label><input name="yesno2f" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno2f" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Life is smoother when I keep my emotions level at all times.</td>
+                        <td>
+                            <label><input name="yesno3f" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno3f" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I accept things the way they are, even if I don't like them.</td>
+                        <td>
+                            <label><input name="yesno4f" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno4f" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>I'm often frustrated when other people don't share my point of view.</td>
+                        <td>
+                            <label><input name="yesno5f" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno5f" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                    <tr class="odd">
+                        <td>I cope well with change.</td>
+                        <td>
+                            <label><input name="yesno6f" type="radio" value="1" onclick="radioBorder();"></label>
+                        </td>
+                        <td>
+                            <label><input name="yesno6f" type="radio" value="0" onclick="radioBorder();"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <input name="Submit" type="submit" value="Submit" onclick="tally_scores('en');return false;"><br>
+            </p>
+        </form>
+    </section>
+
+    <section class="section-padding gray-bg" id="fact area" ; style="padding: 40px; padding-top:20px">
+        <h3 style="text-align:center; text-transform:uppercase; font-weight:400">Making the Mental Health Meter Work for You</h3>
+        <div id="meter_results_blurb"></div>
+        <p></p>
+        <br/>
+        <h4 style="text-align: center; font-weight: bold;">Ability to enjoy life</h4>
+        <h5 style="text-align: center; font-weight: 300; font-size: 20px" id="enjoyment_score"></h5>
+        <ul>
+            <li>
+                If you scored<br>
+                <strong>less than 3 points</strong>, your enjoyment of life is being diminished by anxiety and worry. Some of your concerns are based on real problems, but many are "what ifs" and "maybes".
+            </li>
+            <li>
+                If you scored<br>
+                <strong>3-6 points</strong>, your ability to enjoy life is good to excellent. The higher your score, the stronger your capability to live in the moment and accept that there are some things you cannot predict or change.
+            </li>
+        </ul>
+        <h4 style="text-align: center; font-weight: bold;">Resilience</h4>
+        <h5 style="text-align: center; font-weight: 300; font-size: 20px" id="resilience_score"></h5>
+        <ul>
+            <li>
+                If you scored<br>
+                <strong>less than 3 points</strong>, your resilience may be too low. You isolate yourself during tough times, and the lack of support and other perspectives means you tend to stay focused on the negative.
+            </li>
+            <li>
+                If you scored<br>
+                <strong>3-6 points</strong>, your resilience is good to excellent. The higher your score, the more strongly you feel that even though life can be full of tough times, it's important to keep your perspective.
+            </li>
+        </ul>
+        <h4 style="text-align: center; font-weight: bold;">Balance</h4>
+        <h5 style="text-align: center; font-weight: 300; font-size: 20px" id="balance_score"></h5>
+        <ul>
+            <li>
+                If you scored<br>
+                <strong>less than 3 points</strong>, your life is out of balance. Whether it's work, family or personal interests, one or more aspects of your life are being neglected.
+            </li>
+            <li>
+                If you scored<br>
+                <strong>3-6 points</strong>, your life has a fair to good degree of balance. The higher your score, the stronger your realization that there are many facets to your life that are important to you and deserving of your interest and attention.
+            </li>
+        </ul>
+        <h4 style="text-align: center; font-weight: bold;">Self-actualization</h4>
+        <h5 style="text-align: center; font-weight: 300; font-size: 20px" id="self_actualization_score"></h5>
+        <ul>
+            <li>
+                If you scored<br>
+                <strong>less than 3 points</strong>, you are lacking in self esteem. You tend not to trust other people's good opinions of your abilities and talents, nor do you feel that you could truly make more of your life.
+            </li>
+            <li>
+                If you scored<br>
+                <strong>3-6 points</strong>, you have a good to high degree of self-actualization. The higher your score, the more you are able to value your own unique strengths and potential, and work to develop them to enhance your life.
+            </li>
+        </ul>
+        <h4 style="text-align: center; font-weight: bold;">Flexibility</h4>
+        <h5 style="text-align: center; font-weight: 300; font-size: 20px" id="flexibility_score"></h5>
+        <ul>
+            <li>
+                If you scored<br>
+                <strong>less than 3 points</strong>, you are not as flexible as you could be in your opinions or expectations. This rigidity can create a strong sense of frustration.
+            </li>
+            <li>
+                If you scored<br>
+                <strong>3-6 points</strong>, you have a fair to good level of flexibility. The higher your score, the stronger your belief that change is a fact of life, and that seeing things from other points of view helps you adapt to change and make the most of your life and the people in it.
+            </li>
+        </ul>
+    </section>
+
+
+    <script>
+        var coll = document.getElementsByClassName("coll_4");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+</body>
+

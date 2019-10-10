@@ -1,0 +1,183 @@
+﻿@{
+
+    ViewBag.Title = "Job Page";
+}
+
+<body data-spy="scroll" data-target=".mainmenu-area">
+
+    <!-- Description for Employment Finder Graph -->
+    <section class="section-padding gray-bg">
+        <div class="container">
+            <h1 class="title wow fadeInUp" style="text-align:center; text-transform:uppercase; font-weight:100">Actively seeking a job?</h1>
+            <h2 class="title wow fadeInUp" style="text-align:center; font-weight:bold">Check out this feature to <a style="color:dodgerblue" href="#viz_one"> find a job</a>, matching your interest</h2>
+            <h4 class="title wow fadeInDown" style="text-align:center">This representation assists our users to understand the job market in Victoria and other states of Australia</h4>
+        </div>
+    </section>
+
+    <!-- Facts -->
+    <section class="section-padding" id="service-area" style="margin-left:50px">
+        <h1 class="title wow fadeInUp" style="text-align:center; text-transform:uppercase; font-weight:400">Interesting facts on Australian Youth</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="feature-box wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="box-icon">
+                            <i class="icofont icofont-engineer"></i>
+                        </div>
+                        <h4>Employment Rate</h4>
+                        <p style="text-align:justify">Youth employment deteriorates substantially after the financial crises</p> <!-- Information to be provided-->
+                        <a href="https://www.aph.gov.au/About_Parliament/Parliamentary_Departments/Parliamentary_Library/pubs/rp/BudgetReview201617/Youthemployment" class="read-more">Read More</a> <!-- Information to be provided-->
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="feature-box wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="box-icon">
+                            <i class="icofont icofont-visa"></i>
+                        </div>
+                        <h4>Average Income</h4>
+                        <p style="text-align:justify">Pay gap, pay equality, equal pay for equal work.</p> <!-- Information to be provided-->
+                        <a href="https://www.marieclaire.com.au/average-income-australia-by-age" class="read-more">Read More</a> <!-- Information to be provided-->
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="feature-box wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="box-icon">
+                            <i class="icofont icofont-cur-dollar"></i>
+                        </div>
+                        <h4>Working Full Time</h4>
+                        <p style="text-align:justify">Full time employment in Australia has increased to 8.85 million in July 2019 </p> <!-- Information to be provided-->
+                        <a href="https://tradingeconomics.com/australia/full-time-employment" class="read-more">Read More</a> <!-- Information to be provided-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Svg Files-->
+    <!-- Visualisation -->
+
+    <section class="section-padding gray-bg" id="viz_one">
+        <div class="center-block" id="viz_one">
+            <div class='tableauPlaceholder' id='viz1570356667245' style=" margin-left:20%; height: 500px; width: 1400px;">
+                <noscript>
+                    <a href='#'>
+                        <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sa&#47;SalaryOutlook&#47;Dashboard1&#47;1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='site_root' value='' />
+                    <param name='name' value='SalaryOutlook&#47;Dashboard1' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='no' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Sa&#47;SalaryOutlook&#47;Dashboard1&#47;1.png' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='filter' value='publish=yes' />
+                </object>
+            </div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1570356667245');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                vizElement.style.width = '100%'; vizElement.style.height = '950px'; 
+                //if (divElement.offsetWidth > 800) {
+                //    vizElement.style.width = '800px'; vizElement.style.height = '1300px';
+                //}
+                //else if (divElement.offsetWidth > 500) {
+                //    vizElement.style.width = '800px'; vizElement.style.height = '1300px';
+                //}
+                //else { vizElement.style.width = '100%'; vizElement.style.height = '950px'; }
+                var scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>
+        </div>
+    </section>
+
+    <section class="section-padding gray-bg" id="graph_one">
+        <h1 class="title wow fadeInUp" style="text-align:center; text-transform:uppercase; font-weight:400">Job Opportunities around you!</h1>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5" style="margin-left:7%">
+                <div class='tableauPlaceholder' id='viz1568435288418' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Jo&#47;JobVacanciesinVictoriaComparingOtherStates&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='JobVacanciesinVictoriaComparingOtherStates&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Jo&#47;JobVacanciesinVictoriaComparingOtherStates&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+                <script type='text/javascript'>var divElement = document.getElementById('viz1568435288418'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '550px'; vizElement.style.height = '600px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-5">
+                <h1 style="text-align:center">Find out Job Vacancies: Comparison gets easier!</h1>
+                <ul style="text-align:justify">
+                    <li>
+                        Career advice for job seekers about a whole range of work-related topics. Find out how to create a resume or job application letter and what happens in a job interview.
+                    </li>
+                    <li>
+                        Get some advice about where to find jobs or work experience. Learn about your rights as an employee and what you can do if you think you're being treated unfairly.
+                    </li>
+                    <li>
+                        The bar chart helps you camper the number of job vacancies in various states of Australia.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    @*<section class="section-padding" id="graph_two">
+        <h1 class="title wow fadeInUp" style="text-align:center; text-transform:uppercase; font-weight:400">
+            Get to know the jobs in demand!
+        </h1>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5" style="margin-left:7%">
+                <ul style="text-align:justify">
+                    <li>
+                        The cloud present help you find out the top 10 jobs in demand in Australia.
+                    </li>
+                    <li>
+                        You can go further to find out other trending jibs as well.
+                    </li>
+                    <li>
+                        There's no one best way to find a job. In fact, there are lots of different ways to find a job, each of them with their own benefits and drawbacks.
+                    </li>
+                    <li>
+                        Using a combination of approaches can be a good way to increase your chances of getting a job.
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-5">
+                <div class='tableauPlaceholder' id='viz1568435423919' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Jo&#47;JobVacancyTop10JobsBubbleChart&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='JobVacancyTop10JobsBubbleChart&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Jo&#47;JobVacancyTop10JobsBubbleChart&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+                <script type='text/javascript'>var divElement = document.getElementById('viz1568435423919'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '550px'; vizElement.style.height = '600px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+            </div>
+        </div>
+    </section>*@
+
+    <section class="section-padding gray-bg" id="viz_two">
+        <div class="center-block">
+            <div class='tableauPlaceholder' id='viz1566903716704' style="position:relative;padding-right:20px; margin-left:4%; height: 500px; width: inherit;">
+                <noscript>
+                    <a href='#'>
+                        <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;H4&#47;H4CWZXP47&#47;1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='path' value='shared&#47;H4CWZXP47' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;H4&#47;H4CWZXP47&#47;1.png' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                </object>
+            </div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1566903716704');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                vizElement.style.width = '1400px'; vizElement.style.height = '600px';
+                var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            </script>
+        </div>
+    </section>
+</body>

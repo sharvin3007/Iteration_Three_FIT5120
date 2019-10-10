@@ -1,0 +1,156 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>NPS survey with follow-up questions, jQuery Survey Library Example</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://surveyjs.azureedge.net/1.1.10/survey.jquery.js"></script>
+    <link href="https://surveyjs.azureedge.net/1.1.10/survey.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body data-spy="scroll" data-target=".mainmenu-area">
+
+    <section class="section-padding gray-bg" style="margin-top:80px">
+        <div class="container">
+            <h1 class="title wow fadeInDownBig" style="text-align:center; text-transform:uppercase; font-weight:100;">PLEASE COMPLETE THE <a style="color:mediumblue" href="#surveyContainer">QUIZ</a> FOR US TO COMPREHEND YOUR ISSUES</h1>
+        </div>
+    </section>
+
+    <section class="section-padding" style="padding-left:20px">
+        <button class="coll_4" style="width:94%">
+            Which application form is used? <i class="icofont icofont-simple-down" style="font-size:20px;"></i>
+        </button>
+        <div class="content" style="width: 94%">
+            <br />
+            <ul>
+                <li style="text-align:justify; font-family:Arial;">
+                    Applications must be lodged using Form F72–Application for an order to stop workplace bullying.
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Before lodging an application, first work out whether or not you are eligible to apply. The form can be found at the end of the <a style="color:blue" href="#surveyContainer"> Eligibility quiz.</a>
+                </li>
+            </ul>
+        </div>
+        <br />
+
+        <button class="coll_4" style="width: 94%">What happens to my form after I’ve lodged it? <i class="icofont icofont-simple-down" style="font-size:20px;"></i></button>
+        <div class="content" style="width:94%">
+            <br />
+            <ul>
+                <li style="text-align:justify; font-family:Arial;">
+                    The Commission will inform those people who might be affected by your application that you have applied for a workplace bullying order.
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Before lodging an application, first work out whether or not you are eligible to apply. The form can be found at the end of the <a style="color:blue" href="#surveyContainer"> Eligibility quiz.</a>
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    This will include providing a copy of your application to:
+                    <ul>
+                        <li>
+                            The employer or principal who employed or engaged you
+                        </li>
+                        <li>
+                            Any person or people you allege are bullying you
+                        </li>
+                        <li>
+                            The employer or principal of this person or people (if different from your employer/principal).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <br />
+
+        <button class="coll_4" style="width:94%">
+            Is there an application fee? <i class="icofont icofont-simple-down" style="font-size:20px;"></i>
+        </button>
+        <div class="content" style="width:94%">
+            <br />
+            <ul>
+                <li style="text-align:justify; font-family:Arial;">
+                    Workers are required to pay an application fee. See the <a style="color:blue" href="https://www.fwc.gov.au/disputes-at-work/how-the-commission-works/lodge-an-application#field-content-1-heading"> Lodge an application </a> page for the current fee.
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    This fee may be waived on the grounds that its payment would cause serious hardship. Any application for waiver of the fee should be on the appropriate <a style="color:blue" href="https://www.fwc.gov.au/resources/forms"> waiver request form</a>, and accompany the application form.
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    The fee may also be refunded if the matter is discontinued before the Commission has listed the matter for a mediation, conference or hearing.
+                </li>
+            </ul>
+        </div>
+        <br />
+
+        <button class="coll_4" style="width:94%">
+            How do I lodge an application?<i class="icofont icofont-simple-down" style="font-size:20px;"></i>
+        </button>
+        <div class="content" style="width:94%">
+            <br />
+            <ul>
+                <li style="text-align:justify; font-family:Arial;">
+                    Before lodging an application, first work out whether or not you are <a style="color:blue" href="#surveyContainer">eligible to apply.</a>
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Applications must be lodged using Form F72–Application for an order to stop workplace bullying.
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    The application must be accompanied by the appropriate fee. You may be able to apply for a waiver of that application fee in certain circumstances.
+                </li>
+            </ul>
+        </div>
+        <br />
+
+
+    </section>
+
+    <section class="section-padding">
+        <div id="surveyContainer"></div>
+        <div id="surveyResult"></div>
+
+        <script type="text/javascript" src="~/Scripts/survey.js"></script>
+
+    </section>
+
+    <section class="section-padding gray-bg" style="padding-left: 20px">
+        <button class="coll_4" style="width:94%">Find out how to make an application?<i class="icofont icofont-simple-down" style="font-size:20px;"></i></button>
+        <div class="content" style="width:94%">
+            <br />
+            <ul>
+                <li style="text-align:justify; font-family:Arial;">
+                    Go to the <a style="color:blue" href="https://www.fwc.gov.au/disputes-at-work/anti-bullying/forms-fees"> Forms and fees page </a>. This page provides details of applicable fees and how to lodge a completed application using the below Form F72 - Application for an order to stop workplace bullying.
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    For information about what happens when a workplace bullying application has been lodged, go to <a style="color:blue" href="https://www.fwc.gov.au/disputes-at-work/anti-bullying/what-is-the-process"> What is the process?</a>
+                </li>
+                <li style="text-align:justify; font-family:Arial">
+                    Application forms can be lodged by email, facsimile, telephone, post or in person at one of our <a style="color:blue" href="https://www.fwc.gov.au/disputes-at-work/how-the-commission-works/commission-offices">Commission offices</a>
+                </li>
+            </ul>
+            <h6>
+                Note: The Fair Work Commission is a tribunal and cannot help you decide whether or not to make an application.
+            </h6>
+        </div>
+        <br />
+    </section>
+
+    <!-- Script for Collapsible Bars -->
+    <script>
+        var coll = document.getElementsByClassName("coll_4");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+</body>

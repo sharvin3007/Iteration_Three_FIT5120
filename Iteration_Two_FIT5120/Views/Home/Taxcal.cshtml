@@ -1,0 +1,713 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <body data-spy="scroll" data-target=".mainmenu-area">
+
+        <header id="tax-head" data-stellar-background-ratio="0.5" style="background-position: 0px 0px;">
+            <div class="income">
+                <div class="user-input">
+                    <span id="dollar-sign"></span><input type="text" id="income" placeholder="Insert Income">
+                    <div class="insert-help">Enter hourly, weekly or annual income before tax</div>
+                    @*<div class="basic-options"><input type="checkbox" id="nonResident2" value="yes"><label for="nonResident2">Non-resident</label><input type="checkbox" id="helpLoan2" value="yes"><label for="helpLoan2">HELP Loan</label></div>*@
+                </div>
+                <div class="user-action">
+                    <a id="calculate" onclick="approximateAU()"><i class="fa fa-calculator" id="icon"></i>Calculate</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="more-options"><a id="more-options" onclick="showOptions()"></a></div>
+
+        <div class="options">
+            <div class="optionsMenu">
+                <a id="workloadMenu" class="active">General</a>
+                <a id="paygMenu">PAYG</a>
+                <a id="medicareMenu">Medicare</a>
+                <a id="repairMenu">Budget Repair Levy</a>
+                <a id="helpMenu">HELP</a>
+                <a id="advancedMenu">Advanced</a>
+                <a id="close-options" onclick="showOptions()"><i class="fa fa-close"></i></a>
+
+            </div>
+            <div id="currentOption">General</div>
+
+            <div class="optionsInputs">
+                <div id="workloadOptions">
+                    <div>
+                        <div><label for="weeklyHours">Hours Worked Per Week</label><input type="number" id="weeklyHours"></div>
+                        <div><label for="nonResident">Non-resident</label><input type="checkbox" id="nonResident" value="yes"><label class="checkbox" for="nonResident"></label></div>
+                        <div><label for="deductSuper">Deduct Superannuation</label><input type="checkbox" id="deductSuper" value="yes"><label class="checkbox" for="deductSuper"></label> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="If you have been quoted a &#39;package&#39; which includes Superannuation, tick this box."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                        <div class="auSuper" style="display: none;"><label for="auSuper">Superannuation Rate</label><input type="number" id="auSuper"></div>
+                    </div>
+                </div>
+                <div id="paygOptions">
+                    <div class="paygBands">
+                        <div class="label">Income Threshold</div>
+                        <div><input type="number" id="auTaxBand1"></div>
+                        <div><input type="number" id="auTaxBand2"></div>
+                        <div><input type="number" id="auTaxBand3"></div>
+                        <div><input type="number" id="auTaxBand4"></div>
+                        <div><input type="text" id="auTaxBand5" disabled=""></div>
+                    </div>
+                    <div class="paygRates">
+                        <div class="label">Tax Rate</div>
+                        <div><input type="number" id="auTaxRate1"></div>
+                        <div><input type="number" id="auTaxRate2"></div>
+                        <div><input type="number" id="auTaxRate3"></div>
+                        <div><input type="number" id="auTaxRate4"></div>
+                        <div><input type="number" id="auTaxRate5"></div>
+                    </div>
+                    <div class="settings-button"><a class="btn secondary" onclick="resetPaygVariables();updateFieldsAU();"><i class="fa fa-rotate-left"></i>Reset PAYG Settings</a></div>
+                </div>
+                <div id="medicareOptions">
+                    <div>
+                        <div><label for="auMedicareRate">Medicare</label><input type="number" id="auMedicareRate"></div>
+                        <div class="medicare-part">
+                            <div class="lower"><label for="auMedicareLower">Lower Threshold</label><input type="number" id="auMedicareLower"> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="If your annual income is under this threshold you do not pay Medicare."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                            <div class="upper"><label for="auMedicareUpper">Upper Threshold</label><input type="number" id="auMedicareUpper">  <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="If your annual income is under this threshold but greater than the lower threshold you pay a part charge for Medicare."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                            <div class="charge"><label for="auMedicarePartCharge">Part Charge</label><input type="number" id="auMedicarePartCharge"> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="Charged on the difference between your income and the lower threshold."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                        </div>
+                        <div><label for="mls">Medicare Levy Surcharge</label><input type="checkbox" id="mls" value="yes"><label class="checkbox" for="mls"></label> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="Enable if you do not have an appropriate level of private patient hospital cover."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                        <div class="medicare-levy-surcharge">
+
+                            <div class="mlsBands" style="display: none;">
+                                <div class="label">Income Threshold</div>
+                                <div><input type="number" id="mlsBand1" disabled=""></div>
+                                <div><input type="number" id="mlsBand2" disabled=""></div>
+                                <div><input type="number" id="mlsBand3" disabled=""></div>
+                                <div><input type="text" id="mlsBand4" disabled=""></div>
+                            </div>
+                            <div class="mlsRates" style="display: none;">
+                                <div class="label">MLS Rate</div>
+                                <div><input type="number" id="mlsRate1" disabled=""></div>
+                                <div><input type="number" id="mlsRate2" disabled=""></div>
+                                <div><input type="number" id="mlsRate3" disabled=""></div>
+                                <div><input type="number" id="mlsRate4" disabled=""></div>
+                            </div>
+                        </div>
+
+                        <div class="settings-button"><a class="btn secondary" onclick="resetMedicareVariables();updateFieldsAU();"><i class="fa fa-rotate-left"></i>Reset Medicare Settings</a></div>
+                    </div>
+
+                </div>
+                <div id="repairOptions">
+                    <div>
+                        <div><label for="auRepair">Budget Repair Levy</label><input type="number" id="auRepair"> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="Only paid on income above the top tax threshold. This was stopped on 1 July 2017."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                    </div>
+                </div>
+                <div id="helpOptions">
+                    <div class="helpLoan"><label for="helpLoan">HELP Loan</label><input type="checkbox" id="helpLoan" value="yes"><label class="checkbox" for="helpLoan"></label></div>
+                    <div class="helpVariables">
+                        <div class="helpBands" style="display: none;">
+                            <div class="label">Income Threshold</div>
+                            <div><input type="number" id="helpBand0"></div>
+                            <div><input type="number" id="helpBand1"></div>
+                            <div><input type="number" id="helpBand2"></div>
+                            <div><input type="number" id="helpBand3"></div>
+                            <div><input type="number" id="helpBand4"></div>
+                            <div><input type="number" id="helpBand5"></div>
+                            <div><input type="number" id="helpBand6"></div>
+                            <div><input type="number" id="helpBand7"></div>
+                            <div><input type="number" id="helpBand8"></div>
+                            <div><input type="number" id="helpBand9"></div>
+                            <div><input type="number" id="helpBand10"></div>
+                            <div><input type="number" id="helpBand11"></div>
+                            <div><input type="number" id="helpBand12"></div>
+                            <div><input type="number" id="helpBand13"></div>
+                            <div><input type="number" id="helpBand14"></div>
+                            <div><input type="number" id="helpBand15"></div>
+                            <div><input type="number" id="helpBand16"></div>
+                            <div><input type="number" id="helpBand17"></div>
+                            <div><input type="text" id="helpBand18" disabled=""></div>
+                        </div>
+                        <div class="helpRates" style="display: none;">
+                            <div class="label">Repayment Rate</div>
+                            <div><input type="number" id="helpRate0"></div>
+                            <div><input type="number" id="helpRate1"></div>
+                            <div><input type="number" id="helpRate2"></div>
+                            <div><input type="number" id="helpRate3"></div>
+                            <div><input type="number" id="helpRate4"></div>
+                            <div><input type="number" id="helpRate5"></div>
+                            <div><input type="number" id="helpRate6"></div>
+                            <div><input type="number" id="helpRate7"></div>
+                            <div><input type="number" id="helpRate8"></div>
+                            <div><input type="number" id="helpRate9"></div>
+                            <div><input type="number" id="helpRate10"></div>
+                            <div><input type="number" id="helpRate11"></div>
+                            <div><input type="number" id="helpRate12"></div>
+                            <div><input type="number" id="helpRate13"></div>
+                            <div><input type="number" id="helpRate14"></div>
+                            <div><input type="number" id="helpRate15"></div>
+                            <div><input type="number" id="helpRate16"></div>
+                            <div><input type="number" id="helpRate17"></div>
+                            <div><input type="number" id="helpRate18"></div>
+                        </div>
+                    </div>
+                    <div class="settings-button helpReset" style="display: none;"><a class="btn secondary" onclick="resetHelpVariables();updateFieldsAU();"><i class="fa fa-rotate-left"></i>Reset HELP Settings</a></div>
+                </div>
+                <div id="advancedOptions">
+                    <div>
+                        <div><label for="hourlyThreshold">Hourly Threshold</label><input type="number" id="hourlyThreshold"> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="Income under this value will be calculated as hourly. Income over this value will be calculated as weekly."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                        <div><label for="weeklyThreshold">Weekly Threshold</label><input type="number" id="weeklyThreshold"> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="Any income over this value will be calculated as annual income."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                        <div><label for="multiplier">Compare Bar Multiplier</label><input type="number" id="multiplier"> <a href="https://www.atopayg.com/calculator.html#" class="tooltip-right" data-tooltip="The lower the number, the bigger the Compare bar."><i class="fa fa-info-circle tip-icon"></i></a></div>
+                    </div>
+                    <div class="optionsActions">
+                        <div><a class="btn secondary" onclick="resetAdvancedVariables();updateFieldsAU();"><i class="fa fa-rotate-left"></i>Reset Advanced Settings</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="section-padding gray-bg" id="blog-area" style="padding: 20px 0">
+
+            <div class="main">
+
+                <div class="payg-calculator">
+
+                    <div id="timeframe-selector">
+                        <label for="timeframe" id="timeframe-label">Display Results As...</label>
+                        <div class="styled-select">
+                            <select id="timeframe">
+                                <option value="hour">Hourly</option>
+                                <option value="week">Weekly</option>
+                                <option value="fortnight">Fortnightly</option>
+                                <option value="month">Monthly</option>
+                                <option value="year" selected="">Annually</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="breakdown">
+                        <div class="group timeframe">
+                            <div class="heading">Timeframe</div>
+                            <div class="hour" id="hourTimeframe">Hour</div>
+                            <div class="week" id="weekTimeframe">Week</div>
+                            <div class="fortnight" id="fortnightTimeframe">Fortnight</div>
+                            <div class="month" id="monthTimeframe">Month</div>
+                            <div class="year" id="yearTimeframe">Year</div>
+                        </div>
+                        <div class="group beforeTax">
+                            <div class="heading">Gross Pay</div>
+                            <div class="hour" id="hourBeforeTax">...</div>
+                            <div class="week" id="weekBeforeTax">...</div>
+                            <div class="fortnight" id="fortnightBeforeTax">...</div>
+                            <div class="month" id="monthBeforeTax">...</div>
+                            <div class="year" id="yearBeforeTax">...</div>
+                        </div>
+                        <div class="group payg">
+                            <div class="heading">PAYG</div>
+                            <div class="hour" id="hourPAYG">...</div>
+                            <div class="week" id="weekPAYG">...</div>
+                            <div class="fortnight" id="fortnightPAYG">...</div>
+                            <div class="month" id="monthPAYG">...</div>
+                            <div class="year" id="yearPAYG">...</div>
+                        </div>
+                        <div class="group medicare">
+                            <div class="heading">Medicare</div>
+                            <div class="hour" id="hourMedicare">...</div>
+                            <div class="week" id="weekMedicare">...</div>
+                            <div class="fortnight" id="fortnightMedicare">...</div>
+                            <div class="month" id="monthMedicare">...</div>
+                            <div class="year" id="yearMedicare">...</div>
+                        </div>
+                        <div class="group repair">
+                            <div class="heading">Budget Repair</div>
+                            <div class="hour" id="hourRepair">...</div>
+                            <div class="week" id="weekRepair">...</div>
+                            <div class="fortnight" id="fortnightRepair">...</div>
+                            <div class="month" id="monthRepair">...</div>
+                            <div class="year" id="yearRepair">...</div>
+                        </div>
+                        <div class="group help">
+                            <div class="heading">HELP</div>
+                            <div class="hour" id="hourHelp">...</div>
+                            <div class="week" id="weekHelp">...</div>
+                            <div class="fortnight" id="fortnightHelp">...</div>
+                            <div class="month" id="monthHelp">...</div>
+                            <div class="year" id="yearHelp">...</div>
+                        </div>
+                        <div class="group takeHomePay">
+                            <div class="heading">Take Home Pay</div>
+                            <div class="hour" id="hourTakeHomePay">...</div>
+                            <div class="week" id="weekTakeHomePay">...</div>
+                            <div class="fortnight" id="fortnightTakeHomePay">...</div>
+                            <div class="month" id="monthTakeHomePay">...</div>
+                            <div class="year" id="yearTakeHomePay">...</div>
+                        </div>
+
+                    </div>
+                    @*<div id="super-hint"></div>*@
+                    <div id="result">
+                        <div id="chart">
+                        </div>
+                        <div id="summary" class="summary">
+                            Your take home pay is<div id="summaryReturn">xx%</div>of your gross pay
+                        </div>
+                        <div id="summary2" class="summary">
+                            Your take home pay is<div id="summaryReturn2">$xx</div>per week
+                        </div>
+                    </div>
+                    <div id="compare">
+                        <div class="title">Recent Calculations<a id="clearCompare" class="btn text" onclick="clearCompareAU()">Clear History</a></div>
+                        <div class="row" id="compare0">
+                            <div class="cell heading yearBeforeTax" id="yearBeforeTax0">Gross Pay</div>
+                            <div class="cell heading weekTakeHomePaye" id="weekTakeHomePay0">Take Home Pay</div>
+                            <div class="cell heading compareBar"></div>
+                        </div>
+                        <div id="recent"></div>
+                    </div>
+                </div>
+            </div>
+
+            @*<script language="JavaScript" type="text/javascript" src="~/Scripts/approximate89.au.min.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/hamburger.js"></script>*@
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/Chart.min.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/linkid.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/osd.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/osd_listener.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/UFYwWwmt.js"></script>
+            <script language="JavaScript" type="text/javascript" src="~/Scripts/jquery.stellar.min.js"></script>
+
+            <script type="text/javascript" src="~/Scripts/hamburger.js"></script>
+            <script>
+                $.stellar();
+                $('#menu-calculator').addClass('active');
+
+                function resetAllVariables() {
+                    resetPaygVariables(), resetMedicareVariables(), resetRepairVariables(), resetHelpVariables(), resetWorkloadVariables(), resetAdvancedVariables(), updateFieldsAU()
+                }
+
+                function resetPaygVariables() {
+                    auTaxBand1 = 18200, auTaxBand2 = 37e3, auTaxBand3 = 9e4, auTaxBand4 = 18e4, auTaxBand5 = "180001+", auTaxRate1 = 0, auTaxRate2 = 19, auTaxRate3 = 32.5, auTaxRate4 = 37, auTaxRate5 = 45, $("#nonResident").is(":checked") && ($("#auTaxRate1").val($("#auTaxRate3").val()), auTaxRate1 = $("#auTaxRate1").val(), $("#auTaxRate2").val($("#auTaxRate3").val()), auTaxRate2 = $("#auTaxRate2").val())
+                }
+
+                function resetMedicareVariables() {
+                    auMedicareRate = 2, auMedicareLower = 22398, auMedicareUpper = 27997, auMedicarePartCharge = 10, $("#nonResident").is(":checked") && ($("#auMedicareRate").val(0), auMedicareRate = $("#auMedicareRate").val(), $("#auMedicarePartCharge").val(0), auMedicarePartCharge = $("#auMedicarePartCharge").val()), mlsBand1 = 9e4, mlsBand2 = 105e3, mlsBand3 = 14e4, mlsBand4 = "140001+", mlsRate1 = 0, mlsRate2 = 1, mlsRate3 = 1.25, mlsRate4 = 1.5
+                }
+
+                function resetRepairVariables() {
+                    auRepair = 0
+                }
+
+                function resetHelpVariables() {
+                    helpBand0 = 45881, helpBand1 = 52974, helpBand2 = 56152, helpBand3 = 59522, helpBand4 = 63093, helpBand5 = 66878, helpBand6 = 70891, helpBand7 = 75145, helpBand8 = 79653, helpBand9 = 84433, helpBand10 = 89499, helpBand11 = 94869, helpBand12 = 100561, helpBand13 = 106594, helpBand14 = 112990, helpBand15 = 119770, helpBand16 = 126956, helpBand18 = (helpBand17 = 134572) + 1 + "+", helpRate0 = 0, helpRate1 = 1, helpRate2 = 2, helpRate3 = 2.5, helpRate4 = 3, helpRate5 = 3.5, helpRate6 = 4, helpRate7 = 4.5, helpRate8 = 5, helpRate9 = 5.5, helpRate10 = 6, helpRate11 = 6.5, helpRate12 = 7, helpRate13 = 7.5, helpRate14 = 8, helpRate15 = 8.5, helpRate16 = 9, helpRate17 = 9.5, helpRate18 = 10
+                }
+
+                function resetWorkloadVariables() {
+                    weeklyHours = 38, auSuper = 9.5
+                }
+
+                function resetAdvancedVariables() {
+                    weeksPerYear = 52, hourlyThreshold = 250, weeklyThreshold = 5e3, multiplier = 500
+                }
+
+                function updateFieldsAU() {
+                    $("#auTaxBand1").val(auTaxBand1), $("#auTaxBand2").val(auTaxBand2), $("#auTaxBand3").val(auTaxBand3), $("#auTaxBand4").val(auTaxBand4), $("#auTaxBand5").val(auTaxBand5), $("#auTaxRate1").val(auTaxRate1), $("#auTaxRate2").val(auTaxRate2), $("#auTaxRate3").val(auTaxRate3), $("#auTaxRate4").val(auTaxRate4), $("#auTaxRate5").val(auTaxRate5), $("#auMedicareRate").val(auMedicareRate), $("#auMedicareLower").val(auMedicareLower), $("#auMedicareUpper").val(auMedicareUpper), $("#auMedicarePartCharge").val(auMedicarePartCharge), $("#mlsBand1").val(mlsBand1), $("#mlsBand2").val(mlsBand2), $("#mlsBand3").val(mlsBand3), $("#mlsBand4").val(mlsBand4), $("#mlsRate1").val(mlsRate1), $("#mlsRate2").val(mlsRate2), $("#mlsRate3").val(mlsRate3), $("#mlsRate4").val(mlsRate4), $("#auRepair").val(auRepair), $("#helpBand0").val(helpBand0), $("#helpBand1").val(helpBand1), $("#helpBand2").val(helpBand2), $("#helpBand3").val(helpBand3), $("#helpBand4").val(helpBand4), $("#helpBand5").val(helpBand5), $("#helpBand6").val(helpBand6), $("#helpBand7").val(helpBand7), $("#helpBand8").val(helpBand8), $("#helpBand9").val(helpBand9), $("#helpBand10").val(helpBand10), $("#helpBand11").val(helpBand11), $("#helpBand12").val(helpBand12), $("#helpBand13").val(helpBand13), $("#helpBand14").val(helpBand14), $("#helpBand15").val(helpBand15), $("#helpBand16").val(helpBand16), $("#helpBand17").val(helpBand17), $("#helpBand18").val(helpBand18), $("#helpRate0").val(helpRate0), $("#helpRate1").val(helpRate1), $("#helpRate2").val(helpRate2), $("#helpRate3").val(helpRate3), $("#helpRate4").val(helpRate4), $("#helpRate5").val(helpRate5), $("#helpRate6").val(helpRate6), $("#helpRate7").val(helpRate7), $("#helpRate8").val(helpRate8), $("#helpRate9").val(helpRate9), $("#helpRate10").val(helpRate10), $("#helpRate11").val(helpRate11), $("#helpRate12").val(helpRate12), $("#helpRate13").val(helpRate13), $("#helpRate14").val(helpRate14), $("#helpRate15").val(helpRate15), $("#helpRate16").val(helpRate16), $("#helpRate17").val(helpRate17), $("#helpRate18").val(helpRate18), $("#weeklyHours").val(weeklyHours), $("#auSuper").val(auSuper), $("#hourlyThreshold").val(hourlyThreshold), $("#weeklyThreshold").val(weeklyThreshold), $("#multiplier").val(multiplier)
+                }
+
+                function getUrlParameter(e) {
+                    for (var a, l = window.location.search.substring(1).split("&"), r = 0; r < l.length; r++) {
+                        var t = l[r].split("=");
+                        if (t[0] == e) return t[1]
+                    }
+                }
+
+                function approximateAU() {
+                    if ("" == $("#income").val()) alert("You need to enter a value in the income field before you can calculate.");
+                    else {
+                        x += 1, calculateIncomeBeforeTax(), $("#hourBeforeTax").html(hourBeforeTax.toFixed(2)), $("#weekBeforeTax").html(weekBeforeTax.toFixed(2)), $("#fortnightBeforeTax").html(fortnightBeforeTax.toFixed(2)), $("#monthBeforeTax").html(monthBeforeTax.toFixed(2)), $("#yearBeforeTax").html(yearBeforeTax.toFixed(2)), calculatePAYG(), $("#hourPAYG").html(hourPAYG.toFixed(2)), $("#weekPAYG").html(weekPAYG.toFixed(2)), $("#fortnightPAYG").html(fortnightPAYG.toFixed(2)), $("#monthPAYG").html(monthPAYG.toFixed(2)), $("#yearPAYG").html(yearPAYG.toFixed(2)), calculateMedicare(), $("#hourMedicare").html(hourMedicare.toFixed(2)), $("#weekMedicare").html(weekMedicare.toFixed(2)), $("#fortnightMedicare").html(fortnightMedicare.toFixed(2)), $("#monthMedicare").html(monthMedicare.toFixed(2)), $("#yearMedicare").html(yearMedicare.toFixed(2)), calculateRepair(), $("#hourRepair").html(hourRepair.toFixed(2)), $("#weekRepair").html(weekRepair.toFixed(2)), $("#fortnightRepair").html(fortnightRepair.toFixed(2)), $("#monthRepair").html(monthRepair.toFixed(2)), $("#yearRepair").html(yearRepair.toFixed(2)), calculateHelp(), $("#hourHelp").html(hourHelp.toFixed(2)), $("#weekHelp").html(weekHelp.toFixed(2)), $("#fortnightHelp").html(fortnightHelp.toFixed(2)), $("#monthHelp").html(monthHelp.toFixed(2)), $("#yearHelp").html(yearHelp.toFixed(2)), calculateTakeHomePay(), $("#hourTakeHomePay").html(hourTakeHomePay.toFixed(2)), $("#weekTakeHomePay").html(weekTakeHomePay.toFixed(2)), $("#fortnightTakeHomePay").html(fortnightTakeHomePay.toFixed(2)), $("#monthTakeHomePay").html(monthTakeHomePay.toFixed(2)), $("#yearTakeHomePay").html(yearTakeHomePay.toFixed(2)), generateBreakdownChart(), generateSummaryReturn(), addToCompareAU(), $("html, body").animate({
+                            scrollTop: $(".breakdown").offset().top - 90
+                        }, 2e3);
+                        var e = yearBeforeTax.toFixed(2),
+                            a;
+                        e = parseFloat(e), ga("send", "event", "Calculate", "Income", income, e)
+                    }
+                }
+
+                function calculateWorkload() {
+                    weeklyHours = $("#weeklyHours").val(), workload = weeklyHours, auSuper = $("#auSuper").val()
+                }
+
+                function calculateIncomeBeforeTax() {
+                    var e = $("#income").val();
+                    income = e.replace(/[^0-9.]/g, ""), income = parseFloat(income), calculateWorkload(), hourlyThreshold = $("#hourlyThreshold").val(), weeklyThreshold = $("#weeklyThreshold").val(), income <= hourlyThreshold ? (salary = income * workload * weeksPerYear, wage = income) : income <= weeklyThreshold ? (salary = income * weeksPerYear, wage = income / workload) : income > weeklyThreshold && (salary = income, wage = income / weeksPerYear / workload), $("#deductSuper").is(":checked") && (preSuperSalary = salary, auSuperPercent = auSuper / 100, salary /= 1 + auSuperPercent, wage = salary / weeksPerYear / workload), hourBeforeTax = wage, fortnightBeforeTax = 2 * (weekBeforeTax = wage * workload), monthBeforeTax = salary / 12, yearBeforeTax = salary, calculateSuper()
+                }
+
+                function calculateSuper() {
+                    var e = "",
+                        a = "";
+                    $("#deductSuper").is(":checked") ? (a = e = preSuperSalary - salary, e = e.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD"
+                    })) : (a = e = .095 * salary, e = e.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD"
+                    })), $("#super-hint").html("You're also entitled to an annual <strong>Employer Superannuation Contribution</strong> of " + e + '. <a href="savings.html?s=' + a.toFixed(2) + '" id="super-link">Calculate retirement savings</a>'), $("body #super-hint").show()
+                }
+
+                function calculatePAYG() {
+                    auTaxBand1 = $("#auTaxBand1").val(), auTaxBand2 = $("#auTaxBand2").val(), auTaxBand3 = $("#auTaxBand3").val(), auTaxBand4 = $("#auTaxBand4").val(), auTaxRate1 = $("#auTaxRate1").val(), auTaxRate2 = $("#auTaxRate2").val(), auTaxRate3 = $("#auTaxRate3").val(), auTaxRate4 = $("#auTaxRate4").val(), auTaxRate5 = $("#auTaxRate5").val(), auTaxRate1Percent = auTaxRate1 / 100, auTaxRate2Percent = auTaxRate2 / 100, auTaxRate3Percent = auTaxRate3 / 100, auTaxRate4Percent = auTaxRate4 / 100, auTaxRate5Percent = auTaxRate5 / 100, yearBeforeTax <= auTaxBand1 ? yearPAYG = yearBeforeTax * auTaxRate1Percent : yearBeforeTax <= auTaxBand2 ? yearPAYG = auTaxBand1 * auTaxRate1Percent + (yearBeforeTax - auTaxBand1) * auTaxRate2Percent : yearBeforeTax <= auTaxBand3 ? yearPAYG = auTaxBand1 * auTaxRate1Percent + (auTaxBand2 - auTaxBand1) * auTaxRate2Percent + (yearBeforeTax - auTaxBand2) * auTaxRate3Percent : yearBeforeTax <= auTaxBand4 ? yearPAYG = auTaxBand1 * auTaxRate1Percent + (auTaxBand2 - auTaxBand1) * auTaxRate2Percent + (auTaxBand3 - auTaxBand2) * auTaxRate3Percent + (yearBeforeTax - auTaxBand3) * auTaxRate4Percent : yearBeforeTax > auTaxBand4 && (yearPAYG = auTaxBand1 * auTaxRate1Percent + (auTaxBand2 - auTaxBand1) * auTaxRate2Percent + (auTaxBand3 - auTaxBand2) * auTaxRate3Percent + (auTaxBand4 - auTaxBand3) * auTaxRate4Percent + (yearBeforeTax - auTaxBand4) * auTaxRate5Percent), hourPAYG = yearPAYG / weeksPerYear / workload, fortnightPAYG = 2 * (weekPAYG = yearPAYG / weeksPerYear), monthPAYG = yearPAYG / 12, yearPAYG = yearPAYG
+                }
+
+                function calculateMedicare() {
+                    auMedicareRate = $("#auMedicareRate").val(), auMedicareLower = $("#auMedicareLower").val(), auMedicareUpper = $("#auMedicareUpper").val(), auMedicarePartCharge = $("#auMedicarePartCharge").val(), mlsBand1 = $("#mlsBand1").val(), mlsBand2 = $("#mlsBand2").val(), mlsBand3 = $("#mlsBand3").val(), mlsRate1 = $("#mlsRate1").val(), mlsRate2 = $("#mlsRate2").val(), mlsRate3 = $("#mlsRate3").val(), mlsRate4 = $("#mlsRate4").val(), auMedicareRatePercent = auMedicareRate / 100, auMedicarePartChargePercent = auMedicarePartCharge / 100;
+                    var e = mlsRate1 / 100,
+                        a = mlsRate2 / 100,
+                        l = mlsRate3 / 100,
+                        r = mlsRate4 / 100;
+                    yearMedicare = yearBeforeTax > auMedicareLower ? yearBeforeTax > auMedicareUpper ? yearBeforeTax * auMedicareRatePercent : (yearBeforeTax - auMedicareLower) * auMedicarePartChargePercent : 0, $("#mls").is(":checked") ? yearBeforeTax <= mlsBand1 ? yearMLS = yearBeforeTax * e : yearBeforeTax <= mlsBand2 ? yearMLS = mlsBand1 * e + (yearBeforeTax - mlsBand1) * a : yearBeforeTax <= mlsBand3 ? yearMLS = mlsBand1 * e + (mlsBand2 - mlsBand1) * a + (yearBeforeTax - mlsBand2) * l : yearBeforeTax > mlsBand3 && (yearMLS = mlsBand1 * e + (mlsBand2 - mlsBand1) * a + (mlsBand3 - mlsBand2) * l + (yearBeforeTax - mlsBand3) * r) : yearMLS = 0, hourMedicare = (yearMedicare += yearMLS) / weeksPerYear / workload, fortnightMedicare = 2 * (weekMedicare = yearMedicare / weeksPerYear), monthMedicare = yearMedicare / 12, yearMedicare = yearMedicare
+                }
+
+                function calculateRepair() {
+                    auRepair = $("#auRepair").val(), auRepairPercent = auRepair / 100, yearRepair = yearBeforeTax > auTaxBand4 ? (yearBeforeTax - auTaxBand4) * auRepairPercent : 0, hourRepair = yearRepair / weeksPerYear / workload, fortnightRepair = 2 * (weekRepair = yearRepair / weeksPerYear), monthRepair = yearRepair / 12, yearRepair = yearRepair
+                }
+
+                function calculateHelp() {
+                    helpBand0 = $("#helpBand0").val(), helpBand1 = $("#helpBand1").val(), helpBand2 = $("#helpBand2").val(), helpBand3 = $("#helpBand3").val(), helpBand4 = $("#helpBand4").val(), helpBand5 = $("#helpBand5").val(), helpBand6 = $("#helpBand6").val(), helpBand7 = $("#helpBand7").val(), helpBand8 = $("#helpBand8").val(), helpBand9 = $("#helpBand9").val(), helpBand10 = $("#helpBand10").val(), helpBand11 = $("#helpBand11").val(), helpBand12 = $("#helpBand12").val(), helpBand13 = $("#helpBand13").val(), helpBand14 = $("#helpBand14").val(), helpBand15 = $("#helpBand15").val(), helpBand16 = $("#helpBand16").val(), helpBand17 = $("#helpBand17").val(), helpRate0 = $("#helpRate0").val(), helpRate1 = $("#helpRate1").val(), helpRate2 = $("#helpRate2").val(), helpRate3 = $("#helpRate3").val(), helpRate4 = $("#helpRate4").val(), helpRate5 = $("#helpRate5").val(), helpRate6 = $("#helpRate6").val(), helpRate7 = $("#helpRate7").val(), helpRate8 = $("#helpRate8").val(), helpRate9 = $("#helpRate9").val(), helpRate10 = $("#helpRate10").val(), helpRate11 = $("#helpRate11").val(), helpRate12 = $("#helpRate12").val(), helpRate13 = $("#helpRate13").val(), helpRate14 = $("#helpRate14").val(), helpRate15 = $("#helpRate15").val(), helpRate16 = $("#helpRate16").val(), helpRate17 = $("#helpRate17").val(), helpRate18 = $("#helpRate18").val();
+                    var e = helpRate0 / 100,
+                        a = helpRate1 / 100,
+                        l = helpRate2 / 100,
+                        r = helpRate3 / 100,
+                        t = helpRate4 / 100,
+                        o = helpRate5 / 100,
+                        d = helpRate6 / 100,
+                        n = helpRate7 / 100,
+                        i = helpRate8 / 100,
+                        p = helpRate9 / 100,
+                        h = helpRate10 / 100,
+                        s = helpRate11 / 100,
+                        u = helpRate12 / 100,
+                        c = helpRate13 / 100,
+                        m = helpRate14 / 100,
+                        B = helpRate15 / 100,
+                        R = helpRate16 / 100,
+                        y = helpRate17 / 100,
+                        x = helpRate18 / 100;
+                    $("#helpLoan").is(":checked") ? yearBeforeTax < helpBand0 ? yearHelp = yearBeforeTax * e : yearBeforeTax < helpBand1 ? yearHelp = yearBeforeTax * a : yearBeforeTax < helpBand2 ? yearHelp = yearBeforeTax * l : yearBeforeTax < helpBand3 ? yearHelp = yearBeforeTax * r : yearBeforeTax < helpBand4 ? yearHelp = yearBeforeTax * t : yearBeforeTax < helpBand5 ? yearHelp = yearBeforeTax * o : yearBeforeTax < helpBand6 ? yearHelp = yearBeforeTax * d : yearBeforeTax < helpBand7 ? yearHelp = yearBeforeTax * n : yearBeforeTax < helpBand8 ? yearHelp = yearBeforeTax * i : yearBeforeTax < helpBand9 ? yearHelp = yearBeforeTax * p : yearBeforeTax < helpBand10 ? yearHelp = yearBeforeTax * h : yearBeforeTax < helpBand11 ? yearHelp = yearBeforeTax * s : yearBeforeTax < helpBand12 ? yearHelp = yearBeforeTax * u : yearBeforeTax < helpBand13 ? yearHelp = yearBeforeTax * c : yearBeforeTax < helpBand14 ? yearHelp = yearBeforeTax * m : yearBeforeTax < helpBand15 ? yearHelp = yearBeforeTax * B : yearBeforeTax < helpBand16 ? yearHelp = yearBeforeTax * R : yearBeforeTax <= helpBand17 ? yearHelp = yearBeforeTax * y : yearBeforeTax > helpBand17 && (yearHelp = yearBeforeTax * x) : yearHelp = 0, hourHelp = yearHelp / weeksPerYear / workload, fortnightHelp = 2 * (weekHelp = yearHelp / weeksPerYear), monthHelp = yearHelp / 12, yearHelp = yearHelp
+                }
+
+                function calculateTakeHomePay() {
+                    hourTakeHomePay = hourBeforeTax.toFixed(2) - hourPAYG.toFixed(2) - hourMedicare.toFixed(2) - hourHelp.toFixed(2) - hourRepair.toFixed(2), weekTakeHomePay = weekBeforeTax.toFixed(2) - weekPAYG.toFixed(2) - weekMedicare.toFixed(2) - weekHelp.toFixed(2) - weekRepair.toFixed(2), fortnightTakeHomePay = fortnightBeforeTax.toFixed(2) - fortnightPAYG.toFixed(2) - fortnightMedicare.toFixed(2) - fortnightHelp.toFixed(2) - fortnightRepair.toFixed(2), monthTakeHomePay = monthBeforeTax.toFixed(2) - monthPAYG.toFixed(2) - monthMedicare.toFixed(2) - monthHelp.toFixed(2) - monthRepair.toFixed(2), yearTakeHomePay = yearBeforeTax.toFixed(2) - yearPAYG.toFixed(2) - yearMedicare.toFixed(2) - yearHelp.toFixed(2) - yearRepair.toFixed(2)
+                }
+
+                function generateBreakdownChart() {
+                    var e = [{
+                        value: yearTakeHomePay.toFixed(2),
+                        color: "#27AE60",
+                        highlight: "#2ECC71",
+                        label: "Take Home"
+                    }, {
+                        value: yearPAYG.toFixed(2),
+                        color: "#F39C12",
+                        highlight: "#F1C40F",
+                        label: "PAYG"
+                    }, {
+                        value: yearMedicare.toFixed(2),
+                        color: "#D35400",
+                        highlight: "#E67E22",
+                        label: "Medicare"
+                    }, {
+                        value: yearRepair.toFixed(2),
+                        color: "#C0392B",
+                        highlight: "#E74C3C",
+                        label: "Budget Repair"
+                    }, {
+                        value: yearHelp.toFixed(2),
+                        color: "#8E44AD",
+                        highlight: "#9B59B6",
+                        label: "HELP"
+                    }],
+                        a, l = "breakdownChart" + (x - 1);
+                    $("#" + l).hide(), $("#" + l + "Total").hide();
+                    var r = "breakdownChart" + x;
+                    $("#result").slideDown({
+                        start: function () {
+                            $(this).css({
+                                display: "flex"
+                            })
+                        }
+                    }), breakdownChartCanvas = $('<canvas id="' + r + '" width="180" height="180"></canvas><div id="' + r + 'Total" class="breakdownChartTotal">$' + $("#yearBeforeTax").html() + "</div>"), $(breakdownChartCanvas).hide().appendTo("#chart").fadeIn();
+                    var t = $("#" + r).get(0).getContext("2d");
+                    r = new Chart(t).Doughnut(e, {
+                        percentageInnerCutout: 80,
+                        animationEasing: "easeInOutQuart",
+                        tooltipFontSize: 12
+                    })
+                }
+
+                function generateSummaryReturn() {
+                    var e = yearTakeHomePay / yearBeforeTax * 100;
+                    e = e.toFixed(2), $("#summaryReturn").html(e + "%");
+                    var a = $("#weekTakeHomePay").html();
+                    a = "$" + a, $("#summaryReturn2").html(a);
+                    var l = "budget.html?q=" + yearTakeHomePay.toFixed(2);
+                    $("#where-does-my-money-go").attr("href", l)
+                }
+
+                function addToCompareAU() {
+                    if (x < 1) alert("You must first calculate an income before you can compare it.");
+                    else {
+                        (c += 1) < 2 || 1 == cleared ? ($("#compare0").show(), $("#compare").fadeIn(), changeYearTakeHomePay = "n/a", hideRow = 'style="display:none!important;"', cleared = !1) : (hideRow = 'style="display:none!important;"', previous = c - 1, yearTakeHomePayPreviousRAW = $("#yearTakeHomePay" + previous).html(), yearTakeHomePayPrevious = yearTakeHomePayPreviousRAW.replace(/[^0-9.]/g, ""), changeYearTakeHomePay = (yearTakeHomePay - yearTakeHomePayPrevious) / yearTakeHomePayPrevious, changeYearTakeHomePay = (changeYearTakeHomePay *= 100).toFixed(2) + "%", yearBeforeTaxPreviousRAW = $("#yearBeforeTax" + previous).html(), yearBeforeTaxPrevious = yearBeforeTaxPreviousRAW.replace(/[^0-9.]/g, ""), changeYearBeforeTax = (yearBeforeTax - yearBeforeTaxPrevious) / yearBeforeTaxPrevious, changeYearBeforeTax = (changeYearBeforeTax *= 100).toFixed(2) + "%", change = $('<div class="row" id="change' + c + '" style="display:none;"><div class="cell changeYearBeforeTax" id="changeYearBeforeTax' + c + '">' + changeYearBeforeTax + '</div><div class="cell changeYearTakeHomePay" id="changeYearTakeHomePay' + c + '">' + changeYearTakeHomePay + "</div></div>"), $(change).hide().prependTo("#recent").fadeIn()), multiplier = $("#multiplier").val(), multiplierHeight = 25;
+                        var e = yearTakeHomePay.toFixed(2) / multiplier,
+                            a = yearPAYG.toFixed(2) / multiplier,
+                            l = yearMedicare.toFixed(2) / multiplier,
+                            r = yearRepair.toFixed(2) / multiplier,
+                            t = yearHelp.toFixed(2) / multiplier;
+                        compare = $('<div class="row" id="compare' + c + '"><div class="cell yearBeforeTax" id="yearBeforeTax' + c + '">$' + $("#yearBeforeTax").html() + '</div><div class="cell yearTakeHomePaye" id="yearTakeHomePay' + c + '">$' + $("#yearTakeHomePay").html() + '</div><div class="cell compareBar"><a href="#" class="tooltip-top compare" data-tooltip="Take Home: $' + $("#yearTakeHomePay").html() + '"><div class="bar takeHomePayBar" style="width:' + e + "px;height:" + multiplierHeight + 'px;"></div></a><a href="#" class="tooltip-top compare" data-tooltip="HELP: $' + $("#yearHelp").html() + '"><div class="bar helpBar" style="width:' + t + "px;height:" + multiplierHeight + 'px;"></div></a><a href="#" class="tooltip-top compare" data-tooltip="Budget repair: $' + $("#yearRepair").html() + '"><div class="bar repairBar" style="width:' + r + "px;height:" + multiplierHeight + 'px;"></div></a><a href="#" class="tooltip-top compare" data-tooltip="Medicare: $' + $("#yearMedicare").html() + '"><div class="bar medicareBar" style="width:' + l + "px;height:" + multiplierHeight + 'px;"></div></a><a href="#" class="tooltip-top compare" data-tooltip="PAYG: $' + $("#yearPAYG").html() + '"><div class="bar paygBar" style="width:' + a + "px;height:" + multiplierHeight + 'px;"></div></div></div>'), $(compare).hide().prependTo("#recent").fadeIn()
+                    }
+                }
+
+                function clearCompareAU() {
+                    $(".row").fadeOut(), $("#compare").fadeOut(), cleared = !0, $("#result").fadeOut(), resetBreackdownFields(), $("html, body").animate({
+                        scrollTop: 0
+                    }, 300), $("#income").val("").focus()
+                }
+
+                function resetBreackdownFields() {
+                    $("#hourBeforeTax").html("..."), $("#weekBeforeTax").html("..."), $("#fortnightBeforeTax").html("..."), $("#monthBeforeTax").html("..."), $("#yearBeforeTax").html("..."), $("#hourPAYG").html("..."), $("#weekPAYG").html("..."), $("#fortnightPAYG").html("..."), $("#monthPAYG").html("..."), $("#yearPAYG").html("..."), $("#hourMedicare").html("..."), $("#weekMedicare").html("..."), $("#fortnightMedicare").html("..."), $("#monthMedicare").html("..."), $("#yearMedicare").html("..."), $("#hourRepair").html("..."), $("#weekRepair").html("..."), $("#fortnightRepair").html("..."), $("#monthRepair").html("..."), $("#yearRepair").html("..."), $("#hourHelp").html("..."), $("#weekHelp").html("..."), $("#fortnightHelp").html("..."), $("#monthHelp").html("..."), $("#yearHelp").html("..."), $("#hourTakeHomePay").html("..."), $("#weekTakeHomePay").html("..."), $("#fortnightTakeHomePay").html("..."), $("#monthTakeHomePay").html("..."), $("#yearTakeHomePay").html("...")
+                }
+
+                function showOptions() {
+                    $(".options").slideToggle().promise().done(function () {
+                        animateHeight()
+                    }), $("#more-options").toggleClass("open"), $("#more-options").hasClass("open") || $("#more-options").removeClass("hover")
+                }
+
+                function nonResidentTrue() {
+                    $("#auTaxRate1").val($("#auTaxRate3").val()), $("#auTaxRate1").prop("disabled", !0), $("#auTaxRate2").val($("#auTaxRate3").val()), $("#auTaxRate2").prop("disabled", !0), $("#auMedicareRate").val(0), $("#auMedicareRate").prop("disabled", !0), $("#auMedicarePartCharge").val(0), $("#auMedicarePartCharge").prop("disabled", !0), $("#auMedicareLower").prop("disabled", !0), $("#auMedicareUpper").prop("disabled", !0), $("#mls").prop("disabled", !0), $("#mls").prop("checked", !1), $(".mlsBands").hide(), $(".mlsRates").hide()
+                }
+
+                function nonResidentFalse() {
+                    resetPaygVariables(), $("#auTaxRate1").val(auTaxRate1), $("#auTaxRate1").prop("disabled", !1), $("#auTaxRate2").val(auTaxRate2), $("#auTaxRate2").prop("disabled", !1), resetMedicareVariables(), $("#auMedicareRate").val(auMedicareRate), $("#auMedicareRate").prop("disabled", !1), $("#auMedicarePartCharge").val(auMedicarePartCharge), $("#auMedicarePartCharge").prop("disabled", !1), $("#auMedicareLower").prop("disabled", !1), $("#auMedicareUpper").prop("disabled", !1), $("#mls").prop("disabled", !1)
+                }
+
+                function helpLoanTrue() {
+                    $(".helpBands").fadeIn(), $(".helpRates").fadeIn(), $(".helpReset").fadeIn(), animateHeight(), $("#helpBand1").prop("disabled", !1), $("#helpBand2").prop("disabled", !1), $("#helpBand3").prop("disabled", !1), $("#helpBand4").prop("disabled", !1), $("#helpBand5").prop("disabled", !1), $("#helpBand6").prop("disabled", !1), $("#helpBand7").prop("disabled", !1), $("#helpBand8").prop("disabled", !1), $("#helpBand9").prop("disabled", !1), $("#helpRate1").prop("disabled", !1), $("#helpRate2").prop("disabled", !1), $("#helpRate3").prop("disabled", !1), $("#helpRate4").prop("disabled", !1), $("#helpRate5").prop("disabled", !1), $("#helpRate6").prop("disabled", !1), $("#helpRate7").prop("disabled", !1), $("#helpRate8").prop("disabled", !1), $("#helpRate9").prop("disabled", !1), $("#helpRate10").prop("disabled", !1)
+                }
+
+                function helpLoanFalse() {
+                    $(".helpBands").fadeOut(), $(".helpRates").fadeOut(), $(".helpReset").fadeOut().promise().done(function () {
+                        animateHeight()
+                    }), $("#helpBand1").prop("disabled", !0), $("#helpBand2").prop("disabled", !0), $("#helpBand3").prop("disabled", !0), $("#helpBand4").prop("disabled", !0), $("#helpBand5").prop("disabled", !0), $("#helpBand6").prop("disabled", !0), $("#helpBand7").prop("disabled", !0), $("#helpBand8").prop("disabled", !0), $("#helpBand9").prop("disabled", !0), $("#helpRate1").prop("disabled", !0), $("#helpRate2").prop("disabled", !0), $("#helpRate3").prop("disabled", !0), $("#helpRate4").prop("disabled", !0), $("#helpRate5").prop("disabled", !0), $("#helpRate6").prop("disabled", !0), $("#helpRate7").prop("disabled", !0), $("#helpRate8").prop("disabled", !0), $("#helpRate9").prop("disabled", !0), $("#helpRate10").prop("disabled", !0)
+                }
+
+                function animateHeight() {
+                    optionsHeight = $(".optionsInputs").height() + 80, $(".options").animate({
+                        height: optionsHeight
+                    }, 300)
+                }
+
+                function updateCurrentOption() {
+                    var e = $(".optionsMenu .active").html();
+                    $("#currentOption").html(e)
+                }
+
+                function toggleShowOptionMenu() {
+                    "none" != $("#currentOption").css("display") && $(".optionsMenu").toggleClass("show")
+                }
+
+                function calculateURL() {
+                    urlIncome = getUrlParameter("q"), urlWeeklyHours = getUrlParameter("h"), urlResident = getUrlParameter("r"), urlHelp = getUrlParameter("l"), null == urlIncome || "" != urlIncome && ($("#income").val(urlIncome), ga("send", "event", "Calculate", "URL", urlIncome), "n" == urlResident && ($("#nonResident").prop("checked", !0), $("#nonResident2").prop("checked", !0), nonResidentTrue()), "y" == urlHelp && ($("#helpLoan").prop("checked", !0), $("#helpLoan2").prop("checked", !0), helpLoanTrue()), null === urlWeeklyHours || void 0 === urlWeeklyHours ? $("#weeklyHours").val(weeklyHours) : $("#weeklyHours").val(urlWeeklyHours), approximateAU())
+                }
+                var x = 0,
+                    c = 0,
+                    urlIncome = 0,
+                    urlResident = 0,
+                    urlHelp = 0,
+                    income = 0,
+                    salary = 0,
+                    wage = 0,
+                    auSuper = 0,
+                    auTaxBand1 = 0,
+                    auTaxBand2 = 0,
+                    auTaxBand3 = 0,
+                    auTaxBand4 = 0,
+                    auTaxBand5 = 0,
+                    auTaxRate1 = 0,
+                    auTaxRate2 = 0,
+                    auTaxRate3 = 0,
+                    auTaxRate4 = 0,
+                    auTaxRate5 = 0,
+                    auMedicareRate = 0,
+                    auMedicareLower = 0,
+                    auMedicareUpper = 0,
+                    auMedicarePartCharge = 0,
+                    mlsBand1 = 0,
+                    mlsBand2 = 0,
+                    mlsBand3 = 0,
+                    mlsBand4 = 0,
+                    mlsRate1 = 0,
+                    mlsRate2 = 0,
+                    mlsRate3 = 0,
+                    mlsRate4 = 0,
+                    auRepair = 0,
+                    helpBand0 = 0,
+                    helpBand1 = 0,
+                    helpBand2 = 0,
+                    helpBand3 = 0,
+                    helpBand4 = 0,
+                    helpBand5 = 0,
+                    helpBand6 = 0,
+                    helpBand7 = 0,
+                    helpBand8 = 0,
+                    helpBand9 = 0,
+                    helpBand10 = 0,
+                    helpBand11 = 0,
+                    helpBand12 = 0,
+                    helpBand13 = 0,
+                    helpBand14 = 0,
+                    helpBand15 = 0,
+                    helpBand16 = 0,
+                    helpBand17 = 0,
+                    helpBand18 = 0,
+                    helpRate0 = 0,
+                    helpRate1 = 0,
+                    helpRate2 = 0,
+                    helpRate3 = 0,
+                    helpRate4 = 0,
+                    helpRate5 = 0,
+                    helpRate6 = 0,
+                    helpRate7 = 0,
+                    helpRate8 = 0,
+                    helpRate9 = 0,
+                    helpRate10 = 0,
+                    helpRate11 = 0,
+                    helpRate12 = 0,
+                    helpRate13 = 0,
+                    helpRate14 = 0,
+                    helpRate15 = 0,
+                    helpRate16 = 0,
+                    helpRate17 = 0,
+                    helpRate18 = 0,
+                    hours = 0,
+                    days = 0,
+                    workload = 0,
+                    weeklyHours = 0,
+                    weeksPerYear = 0,
+                    hourlyThreshold = 0,
+                    weeklyThreshold = 0,
+                    hourBeforeTax = 0,
+                    weekBeforeTax = 0,
+                    fortnightBeforeTax = 0,
+                    monthBeforeTax = 0,
+                    yearBeforeTax = 0,
+                    hourPAYG = 0,
+                    weekPAYG = 0,
+                    fortnightPAYG = 0,
+                    monthPAYG = 0,
+                    yearPAYG = 0,
+                    hourMedicare = 0,
+                    weekMedicare = 0,
+                    fortnightMedicare = 0,
+                    monthMedicare = 0,
+                    yearMedicare = 0,
+                    yearMLS = 0,
+                    hourRepair = 0,
+                    weekRepair = 0,
+                    fortnightRepair = 0,
+                    monthRepair = 0,
+                    yearRepair = 0,
+                    hourhelp = 0,
+                    weekHelp = 0,
+                    fortnightHelp = 0,
+                    monthHelp = 0,
+                    yearHelp = 0,
+                    hourTakeHomePay = 0,
+                    weekTakeHomePay = 0,
+                    fortnightTakeHomePay = 0,
+                    monthTakeHomePay = 0,
+                    yearTakeHomePay = 0,
+                    compare = 0,
+                    change = 0,
+                    changeYearBeforeTax = 0,
+                    changeYearTakeHomePay = 0,
+                    hideRow = 0,
+                    cleared = !0,
+                    multiplier = 0,
+                    gaSalary = 0,
+                    gaInput = 0,
+                    preSuperIncome = 0,
+                    preSuperSalary = 0;
+                $("#where-does-my-money-go").on("mousedown", function () {
+                    ga("send", "event", "Calculate", "Budget", yearTakeHomePay, yearTakeHomePay)
+                }), $.fn.digits = function () {
+                    return this.each(function () {
+                        $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
+                    })
+                }, $(document).ready(function () {
+                    resetAllVariables(), calculateURL(), $("#income").focus(), jQuery(window).width() < 1025 && $("#income").attr("type", "number")
+                }), $(window).unload(function () {
+                    x > 0 && ga("send", "event", "Calculate", "Volume", x, x)
+                });
+                var loadWidth = $(window).width(),
+                    currentWidth = loadWidth;
+                $(window).resize(function () {
+                    jQuery(window).width() < 1025 && $("#income").attr("type", "number"), jQuery(window).width() > 1025 && $("#income").attr("type", "text"), currentWidth = $(window).width(), loadWidth == currentWidth || ("block" == $("#timeframe-selector").css("display") ? ($(".hour, .week, .fortnight, .month, .year").css("display", "none"), $("#timeframe").val(selectedTimeframe), $("." + selectedTimeframe).css("display", "inline-block")) : $(".hour, .week, .fortnight, .month, .year").css("display", "inline-block"), loadWidth = currentWidth)
+                }), $("#auTaxBand4").on("input", function () {
+                    band5 = $(this).val(), band5 = parseFloat(band5) + 1, band5 += " +", $("#auTaxBand5").val(band5)
+                }), $("#nonResident").change(function () {
+                    $("#nonResident").is(":checked") ? ($("#nonResident2").prop("checked", !0), nonResidentTrue()) : ($("#nonResident2").prop("checked", !1), nonResidentFalse())
+                }), $("#nonResident2").change(function () {
+                    $("#nonResident2").is(":checked") ? ($("#nonResident").prop("checked", !0), nonResidentTrue()) : ($("#nonResident").prop("checked", !1), nonResidentFalse())
+                }), $("#auTaxRate3").on("input", function () {
+                    $("#nonResident").is(":checked") && ($("#auTaxRate1").val($("#auTaxRate3").val()), $("#auTaxRate2").val($("#auTaxRate3").val()))
+                }), $("#mlsBand3").on("input", function () {
+                    band4 = $(this).val(), band4 = parseFloat(band4) + 1, band4 += "+", $("#mlsBand4").val(band4)
+                }), $("#helpBand9").on("input", function () {
+                    band10 = $(this).val(), band10 = parseFloat(band10) + 1, band10 += "+", $("#helpBand10").val(band10)
+                }), $(".mlsBands").hide(), $(".mlsRates").hide(), $("#mls").change(function () {
+                    $("#mls").is(":checked") ? ($("#mlsBand1").prop("disabled", !1), $("#mlsBand2").prop("disabled", !1), $("#mlsBand3").prop("disabled", !1), $("#mlsRate1").prop("disabled", !1), $("#mlsRate2").prop("disabled", !1), $("#mlsRate3").prop("disabled", !1), $("#mlsRate4").prop("disabled", !1), $(".mlsBands").fadeIn(), $(".mlsRates").fadeIn(), animateHeight()) : ($("#mlsBand1").prop("disabled", !0), $("#mlsBand2").prop("disabled", !0), $("#mlsBand3").prop("disabled", !0), $("#mlsRate1").prop("disabled", !0), $("#mlsRate2").prop("disabled", !0), $("#mlsRate3").prop("disabled", !0), $("#mlsRate4").prop("disabled", !0), $(".mlsBands").fadeOut(), $(".mlsRates").fadeOut().promise().done(function () {
+                        animateHeight()
+                    }))
+                }), $(".auSuper").hide(), $("#deductSuper").change(function () {
+                    $("#deductSuper").is(":checked") ? ($(".auSuper").fadeIn(), animateHeight(), $("#auSuper").prop("disabled", !1)) : ($(".auSuper").fadeOut().promise().done(function () {
+                        animateHeight()
+                    }), $("#auSuper").prop("disabled", !0))
+                }), $(".helpBands").hide(), $(".helpRates").hide(), $(".helpReset").hide(), $("#helpLoan").change(function () {
+                    $("#helpLoan").is(":checked") ? ($("#helpLoan2").prop("checked", !0), helpLoanTrue()) : ($("#helpLoan2").prop("checked", !1), helpLoanFalse())
+                }), $("#helpLoan2").change(function () {
+                    $("#helpLoan2").is(":checked") ? ($("#helpLoan").prop("checked", !0), helpLoanTrue()) : ($("#helpLoan").prop("checked", !1), helpLoanFalse())
+                }), $("#workloadMenu").click(function () {
+                    $(this).addClass("active"), $("#paygMenu, #medicareMenu, #repairMenu, #helpMenu, #advancedMenu").removeClass("active"), $("#workloadOptions").fadeIn(), $("#paygOptions, #medicareOptions, #repairOptions, #helpOptions, #advancedOptions").hide(), animateHeight(), toggleShowOptionMenu()
+                }), $("#paygMenu").click(function () {
+                    $(this).addClass("active"), $("#workloadMenu, #medicareMenu, #repairMenu, #helpMenu, #advancedMenu").removeClass("active"), $("#paygOptions").fadeIn(), $("#workloadOptions, #medicareOptions, #repairOptions, #helpOptions, #advancedOptions").hide(), animateHeight(), toggleShowOptionMenu()
+                }), $("#medicareMenu").click(function () {
+                    $(this).addClass("active"), $("#workloadMenu, #paygMenu, #repairMenu, #helpMenu, #advancedMenu").removeClass("active"), $("#medicareOptions").fadeIn(), $("#workloadOptions, #paygOptions, #repairOptions, #helpOptions, #advancedOptions").hide(), animateHeight(), toggleShowOptionMenu()
+                }), $("#repairMenu").click(function () {
+                    $(this).addClass("active"), $("#workloadMenu, #paygMenu, #medicareMenu, #helpMenu, #advancedMenu").removeClass("active"), $("#repairOptions").fadeIn(), $("#workloadOptions, #paygOptions, #medicareOptions, #helpOptions, #advancedOptions").hide(), animateHeight(), toggleShowOptionMenu()
+                }), $("#helpMenu").click(function () {
+                    $(this).addClass("active"), $("#workloadMenu, #paygMenu, #medicareMenu, #repairMenu, #advancedMenu").removeClass("active"), $("#helpOptions").fadeIn(), $("#workloadOptions, #paygOptions, #medicareOptions, #repairOptions, #advancedOptions").hide(), animateHeight(), toggleShowOptionMenu()
+                }), $("#advancedMenu").click(function () {
+                    $(this).addClass("active"), $("#workloadMenu, #paygMenu, #medicareMenu, #repairMenu, #helpMenu").removeClass("active"), $("#advancedOptions").fadeIn(), $("#workloadOptions, #paygOptions, #medicareOptions, #helpOptions, #repairOptions").hide(), animateHeight(), toggleShowOptionMenu()
+                });
+                var optionsHeight = 0;
+                $("#more-options").mouseenter(function () {
+                    $(this).hasClass("open") ? $(this).removeClass("hover") : $(this).addClass("hover")
+                }), $("#more-options").mouseleave(function () {
+                    $(this).hasClass("open") ? $(this).addClass("hover") : $(this).removeClass("hover")
+                }), updateCurrentOption(), $(".optionsMenu a").on("click", function () {
+                    updateCurrentOption()
+                }), $("#currentOption").on("click", function () {
+                    toggleShowOptionMenu()
+                }), $("#income").on("keydown", function (e) {
+                    13 == e.which && approximateAU()
+                });
+                var selectedTimeframe = $("#timeframe").val();
+                $("#timeframe").on("change", function () {
+                    selectedTimeframe = $(this).val(), $(".hour, .week, .fortnight, .month, .year").css("display", "none"), $("." + selectedTimeframe).css("display", "inline-block"), $("#timeframe option[value='" + selectedTimeframe + "']").attr("selected", !0), $("#timeframe option[value!='" + selectedTimeframe + "']").attr("selected", !1)
+                }), $(".group").mouseenter(function () {
+                    $(this).find("div:not(.heading)").addClass("hover")
+                }), $(".group").mouseleave(function () {
+                    $(this).find("div:not(.heading)").removeClass("hover")
+                }), $(function () {
+                    var e = $(".income");
+                    $(window).scroll(function () {
+                        var a = $(window).scrollTop();
+                        "block" != $("#timeframe-selector").css("display") ? a >= 400 ? (e.addClass("scrolled"), e.addClass("hidden"), a >= 450 && e.removeClass("hidden")) : e.removeClass("scrolled") : (e.removeClass("hidden"), e.removeClass("scrolled"))
+                    })
+                });
+            </script>
+            </section>
+    </body>
