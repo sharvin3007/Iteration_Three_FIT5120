@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Iteration_Two_FIT5120.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -131,7 +132,7 @@ namespace Iteration_Two_FIT5120.Controllers
 
             return View();
         }
-        
+
         public ActionResult Meter_Mental()
         {
             ViewBag.Message = "Your mental meter page.";
@@ -142,6 +143,13 @@ namespace Iteration_Two_FIT5120.Controllers
         public ActionResult Taxcal()
         {
             ViewBag.Message = "Your tax calculator page.";
+
+            return View();
+        }
+
+        public ActionResult HTTP404_Page()
+        {
+            ViewBag.Message = "Your error page.";
 
             return View();
         }

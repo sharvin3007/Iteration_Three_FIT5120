@@ -55,7 +55,7 @@ function tally_scores(language) {
 
         if (language == "en") { // Quiz is being viewed in English
 
-            document.getElementById("meter_results_blurb").innerHTML = "<p>Thank you for taking our Mental Health Meter! Reviewing how you responded to each section can help you identify ways in which your mental fitness could be improved. The result will be better mental health which can make a positive impact on your everyday life, and help you to cope with challenging times.  Remember that taking control of your health means taking care of your mind.</p><p>To find out more about how you can improve many aspects of your mental health visit the <a href='http://www.cmha.ca/mental-health/your-mental-health/resilience/'>Mind + Body Fitness section</a> on our web site.</p><p>Your <strong>Mental Health Meter</strong> results are below.  (You may wish to print this page from your web browser. Your results will not be saved when you leave this page.)</p>";
+            document.getElementById("meter_results_blurb").innerHTML = "<p>After reviewing your responses, we can help you identify the ways in which you can resolve your mental health issues.</p><p>This will make a positive impact on your everyday life and cope up with challenges.</p><p>Remember that, taking control of your health means taking control of your mind.</p>";
             document.getElementById("meter_results_blurb").setAttribute("class", "meterBlurb");
 
             document.getElementById("enjoyment_score").innerHTML = "<span class='total'><strong>Your score is:</strong> " + enjoyment_score + "</span>";

@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -627,6 +628,8 @@
     <Content Include="Views\Home\Mental_Quiz.cshtml" />
     <Content Include="Views\Home\Meter_Mental.cshtml" />
     <Content Include="Views\Home\Taxcal.cshtml" />
+    <Content Include="Views\Home\HTTP404_Page.cshtml" />
+    <Content Include="Views\Error\HTTP404_Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
