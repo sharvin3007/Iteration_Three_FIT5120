@@ -352,6 +352,11 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\Expo_Images\justice_1.jpg" />
+    <Content Include="Content\Expo_Images\justice_2.jpg" />
+    <Content Include="Content\Expo_Images\justice_3.jpg" />
+    <Content Include="Content\Expo_Images\justice_4.jpg" />
+    <Content Include="Content\Expo_Images\justice_5.jpg" />
     <Content Include="Content\icofont.css" />
     <Content Include="Content\Images\about-3.jpg" />
     <Content Include="Content\Images\about-image.png" />

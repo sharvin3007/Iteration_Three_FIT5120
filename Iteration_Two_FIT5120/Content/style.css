@@ -254,14 +254,15 @@ table {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: center;
-    background-image: linear-gradient(#475577, #8690a6);
+    background-image: linear-gradient(#475577, #8690a6);'
+        '
     color: white;
     border-radius: 15px;
     height:130px;
 }
 
 #home-area {
-    background: url(images/justice.jpg) no-repeat scroll center center / cover;
+    background: url(Expo_Images/justice_5.jpg) no-repeat scroll center center / cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -2562,7 +2563,7 @@ table {
     background-color: transparent;
     -webkit-transition: 0.3s;
     transition: 0.3s;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /*border-bottom: 1px solid rgba(255, 255, 255, 0.2);*/
 }
 
         .site2 .mainmenu-area,
@@ -2650,7 +2651,6 @@ table {
 
 .header-area {
     position: relative;
-    background: url('/Content/Images/justice.jpg') no-repeat scroll center center / cover;
     width: 100%;
     height: 100%;
 }
